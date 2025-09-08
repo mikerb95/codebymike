@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 15 18 25;
+}
+
+.dark {
+  --bg: 12 14 18;
+  --fg: 232 235 243;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 dark:bg-[#0c0e12] dark:text-slate-100 antialiased;
+}
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
