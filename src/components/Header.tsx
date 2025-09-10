@@ -4,6 +4,7 @@ import ThemeToggle from './ThemeToggle'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import MobileMenu from './MobileMenu'
 import { motion } from 'framer-motion'
+import { useScrollDirection } from '@/hooks/useScrollDirection'
 
 const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
@@ -13,20 +14,38 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const active = useActiveSection({ ids: NAV_ITEMS.map((i) => i.id!) })
+  const { hidden } = useScrollDirection(6)
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/60 dark:border-slate-800/60 backdrop-blur bg-white/70 dark:bg-[#0c0e12]/70 supports-[backdrop-filter]:bg-white/55 dark:supports-[backdrop-filter]:bg-[#0c0e12]/55">
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-semibold tracking-tight text-lg">
-          CodeByMike
+    <motion.header
+      initial={false}
+      animate={{ y: hidden ? -96 : 0, opacity: hidden ? 0.4 : 1 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+      className="pointer-events-none fixed top-3 left-0 right-0 z-50 px-4 md:px-6"
+      aria-label="Barra de navegación"
+    >
+      {/* Anchor top target */}
+      <span id="top" className="absolute -top-24" aria-hidden />
+      <div
+        className="relative mx-auto max-w-7xl flex h-16 items-center justify-between rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-[#0c0e12]/80 backdrop-blur-xl shadow-[0_4px_16px_-4px_rgb(0_0_0/0.12)] ring-1 ring-slate-900/5 dark:ring-white/5 px-5 md:px-8 pointer-events-auto"
+      >
+        <Link
+          href="/"
+          className="font-semibold tracking-tight text-lg flex items-center gap-2 select-none"
+        >
+          {/* Placeholder logo mark */}
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-brand-400 to-brand-600 text-white font-bold text-sm shadow-inner">
+            C
+          </span>
+          <span className="hidden sm:inline">CodeByMike</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-1 text-sm relative">
+        <nav className="hidden md:flex items-center gap-1 text-sm relative h-full">
           {NAV_ITEMS.map((item) => {
             const isActive = active === item.id || (item.id === 'top' && active === '')
             return (
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 ${
+                className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                   isActive ? 'text-brand-600 dark:text-brand-400' : 'text-slate-600 dark:text-slate-300'
                 }`}
               >
@@ -41,17 +60,20 @@ export default function Header() {
               </a>
             )
           })}
-          <div className="h-6 w-px mx-1 bg-slate-300/60 dark:bg-slate-700/60" />
+          <div className="h-6 w-px mx-2 bg-slate-300/60 dark:bg-slate-700/60" />
           <ThemeToggle />
           <a
             href="#contacto"
-            className="ml-2 inline-flex items-center gap-2 rounded-md bg-brand-600 text-white px-4 py-2 font-medium hover:bg-brand-700 text-xs tracking-wide"
+            className="ml-2 inline-flex items-center gap-2 rounded-md bg-gradient-to-br from-brand-500 to-brand-600 text-white px-4 py-2 font-medium hover:from-brand-600 hover:to-brand-700 text-xs tracking-wide shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           >
             HABLEMOS
           </a>
         </nav>
-        <MobileMenu items={NAV_ITEMS} />
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <MobileMenu items={NAV_ITEMS} />
+        </div>
       </div>
-    </header>
+    </motion.header>
   )
 }
