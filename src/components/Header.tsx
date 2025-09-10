@@ -11,6 +11,7 @@ import MegaMenu from './MegaMenu'
 const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
   { label: 'Servicios', href: '#servicios', id: 'servicios' },
+  { label: 'Proyectos', href: '/proyectos', id: 'proyectos' },
   { label: 'Contacto', href: '#contacto', id: 'contacto' }
 ]
 
