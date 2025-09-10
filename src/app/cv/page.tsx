@@ -57,7 +57,7 @@ export default function CVPage() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/mdrb95/" target="_blank" rel="noopener noreferrer"
                   className="group flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
                 >
                   <Linkedin size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
@@ -66,7 +66,7 @@ export default function CVPage() {
               </li>
               <li>
                 <a
-                  href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                  href="https://github.com/mikerb95" target="_blank" rel="noopener noreferrer"
                   className="group flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
                 >
                   <Github size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
@@ -75,7 +75,7 @@ export default function CVPage() {
               </li>
               <li>
                 <a
-                  href="mailto:contacto@tudominio.com"
+                  href="mailto:mdrb95@gmail.com"
                   className="group flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
                 >
                   <Mail size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
@@ -84,7 +84,7 @@ export default function CVPage() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/0000000000"
+                  href="https://wa.me/573104641228"
                   className="group flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
                 >
                   <MessageCircle size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
