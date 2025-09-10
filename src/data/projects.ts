@@ -1,3 +1,4 @@
+import projectsData from './projects.json'
 export interface ProjectDetail {
   slug: string
   title: string
@@ -24,10 +25,8 @@ export interface ProjectDetail {
   }
 }
 
-// At build time load JSON (non persistent at runtime on serverless deployments after build)
-// For runtime modifications use functions in lib/projectsStore via server actions.
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-export const projects: ProjectDetail[] = require('./projects.json')
+// At build time load JSON (no persistent mutations after build en serverless). Para runtime dinámico usar lib/projectsStore.
+export const projects: ProjectDetail[] = projectsData as ProjectDetail[]
 
 export function getProjectBySlug(slug: string) {
   return projects.find((p) => p.slug === slug)
