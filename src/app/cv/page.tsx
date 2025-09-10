@@ -23,16 +23,18 @@ export default function CVPage() {
       <div className="grid gap-10 lg:grid-cols-12">
         {/* Viewer */}
         <div className="lg:col-span-8">
-          <div className="relative rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur shadow-sm overflow-hidden min-h-[70vh] flex items-center justify-center">
+          <div
+            className="relative rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur shadow-sm overflow-hidden h-[calc(100vh-260px)] min-h-[70vh]"
+          >
             {pdfAvailable ? (
               <iframe
                 title="CV PDF"
-                src={`${PDF_PATH}#view=FitH&toolbar=0`}
-                className="w-full h-full"
+                src={`${PDF_PATH}#toolbar=0&navpanes=0&scrollbar=1&zoom=page-fit`}
+                className="absolute inset-0 w-full h-full" 
                 loading="lazy"
               />
             ) : (
-              <div className="p-10 text-center text-sm text-slate-500 dark:text-slate-400">
+              <div className="absolute inset-0 flex items-center justify-center p-10 text-center text-sm text-slate-500 dark:text-slate-400">
                 Sube tu archivo PDF a <code className="font-mono">public/docs/cv.pdf</code> para mostrarlo aquí.
               </div>
             )}
