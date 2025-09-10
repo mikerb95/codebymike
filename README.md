@@ -1,6 +1,6 @@
 # CodeByMike
 
-Base web for a software developer portfolio/services site, optimized for Vercel deployments.
+My Dev portfolio/services site, optimized for Vercel deployments.
 
 - Framework: Next.js (App Router, TypeScript)
 - Styling: Tailwind CSS (dark mode via class)
@@ -15,7 +15,3 @@ Base web for a software developer portfolio/services site, optimized for Vercel 
 - build: production build
 - start: start production server
 - lint/format: code quality
-
-## Deploy
-
-Push to a Git repository and import into Vercel. No extra config required.
