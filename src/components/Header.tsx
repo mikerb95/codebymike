@@ -5,6 +5,8 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 import MobileMenu from './MobileMenu'
 import { motion } from 'framer-motion'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
+import { useState, useCallback } from 'react'
+import MegaMenu from './MegaMenu'
 
 const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
@@ -15,6 +17,9 @@ const NAV_ITEMS = [
 export default function Header() {
   const active = useActiveSection({ ids: NAV_ITEMS.map((i) => i.id!) })
   const { hidden } = useScrollDirection(6)
+  const [megaOpen, setMegaOpen] = useState(false)
+  const toggleMega = useCallback(() => setMegaOpen((o) => !o), [])
+  const closeMega = useCallback(() => setMegaOpen(false), [])
   return (
     <motion.header
       initial={false}
@@ -41,6 +46,31 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-1 text-sm relative h-full">
           {NAV_ITEMS.map((item) => {
             const isActive = active === item.id || (item.id === 'top' && active === '')
+            if (item.label === 'Servicios') {
+              return (
+                <button
+                  key="mega-servicios"
+                  onClick={toggleMega}
+                  onMouseEnter={() => setMegaOpen(true)}
+                  aria-haspopup="true"
+                  aria-expanded={megaOpen}
+                  className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+                    megaOpen || isActive
+                      ? 'text-brand-600 dark:text-brand-400'
+                      : 'text-slate-600 dark:text-slate-300'
+                  }`}
+                >
+                  {item.label}
+                  {(megaOpen || isActive) && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute left-2 right-2 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-brand-400 to-brand-600"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              )
+            }
             return (
               <a
                 key={item.href}
@@ -69,6 +99,13 @@ export default function Header() {
             HABLEMOS
           </a>
         </nav>
+        {/* Mega menu container overlay area */}
+        <div
+          onMouseLeave={closeMega}
+          className="absolute left-0 right-0 top-full"
+        >
+          <MegaMenu open={megaOpen} onClose={closeMega} />
+        </div>
         <div className="flex md:hidden items-center gap-2">
           <ThemeToggle />
           <MobileMenu items={NAV_ITEMS} />
