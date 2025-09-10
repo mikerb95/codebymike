@@ -5,6 +5,8 @@ import type { Metadata } from 'next'
 
 interface Props { params: { slug: string } }
 
+export const dynamic = 'force-dynamic'
+
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))
 }
