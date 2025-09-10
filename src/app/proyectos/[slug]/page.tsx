@@ -138,12 +138,18 @@ export default function ProjectDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="pt-12 border-t border-slate-200 dark:border-slate-800">
+            <div className="pt-12 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-6">
               <a
                 href="/proyectos"
                 className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:underline"
               >
                 ← Volver a proyectos
+              </a>
+              <a
+                href="/cv"
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-brand-600 hover:underline"
+              >
+                Ver CV
               </a>
             </div>
           </div>

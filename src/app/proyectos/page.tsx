@@ -30,6 +30,12 @@ export default function ProyectosPage() {
         >
           ← Volver al inicio
         </Link>
+        <Link
+          href="/cv"
+          className="ml-6 inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-brand-600 hover:underline"
+        >
+          CV
+        </Link>
       </div>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {projects.map((p, idx) => (
