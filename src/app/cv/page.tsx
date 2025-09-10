@@ -17,7 +17,7 @@ export default function CVPage() {
       <header className="mb-10">
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Currículum</h1>
         <p className="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl text-sm md:text-base">
-          Visualización embebida del CV. Usa las acciones laterales para descargar o contactar.
+          Descarga este archivo o contactame a través de los links a mis redes, whatsapp o correo.
         </p>
       </header>
       <div className="grid gap-10 lg:grid-cols-12">
