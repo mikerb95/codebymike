@@ -1,36 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-interface Project {
-  title: string
-  description: string
-  stack: string[]
-  href?: string
-}
-
-const projects: Project[] = [
-  {
-    title: 'Plataforma E-commerce Headless',
-    description: 'Integración headless con rendimiento extremo y checkout optimizado.',
-    stack: ['Next.js', 'Edge Functions', 'Stripe', 'GraphQL']
-  },
-  {
-    title: 'Design System Multi-brand',
-    description: 'Sistema de componentes escalable con tokens y theming dinámico.',
-    stack: ['TypeScript', 'Storybook', 'Tailwind', 'Figma API']
-  },
-  {
-    title: 'Real-time Dashboard',
-    description: 'Visualización de métricas y alertas en tiempo real con sockets.',
-    stack: ['Next.js', 'Socket.io', 'PostgreSQL', 'Redis']
-  },
-  {
-    title: 'Motion Experience',
-    description: 'Microinteracciones y transiciones fluidas para mejorar retención.',
-    stack: ['Framer Motion', 'React 18', 'Rive']
-  }
-]
+import { projects } from '@/data/projects'
 
 export default function ProyectosPage() {
   return (
@@ -63,7 +34,7 @@ export default function ProyectosPage() {
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {projects.map((p, idx) => (
           <motion.article
-            key={p.title}
+            key={p.slug || p.title}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 * idx, duration: 0.5 }}
@@ -85,14 +56,12 @@ export default function ProyectosPage() {
                 </span>
               ))}
             </div>
-            {p.href && (
-              <Link
-                href={p.href}
-                className="mt-4 inline-flex text-xs font-medium text-brand-600 hover:underline"
-              >
-                Ver más →
-              </Link>
-            )}
+            <Link
+              href={`/proyectos/${p.slug}`}
+              className="mt-4 inline-flex text-xs font-medium text-brand-600 hover:underline"
+            >
+              Ver más →
+            </Link>
             <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-brand-500/30 transition-colors" />
           </motion.article>
         ))}

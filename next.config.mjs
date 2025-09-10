@@ -10,7 +10,8 @@ const nextConfig = {
       { protocol: 'https', hostname: 'nodejs.org' },
       { protocol: 'https', hostname: 'azure.microsoft.com' },
       { protocol: 'https', hostname: 'www.netlify.com' },
-      { protocol: 'https', hostname: 'static-00.iconduck.com' }
+      { protocol: 'https', hostname: 'static-00.iconduck.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' }
     ]
   },
   experimental: {

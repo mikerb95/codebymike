@@ -1,0 +1,82 @@
+export interface ProjectDetail {
+  slug: string
+  title: string
+  tagline: string
+  description: string
+  hero: {
+    image: string
+    alt: string
+    theme?: 'light' | 'dark'
+  }
+  roles: string[]
+  stack: string[]
+  metrics: { label: string; value: string }[]
+  sections: { id: string; heading: string; content: string }[]
+  gallery: { image: string; alt: string; caption?: string }[]
+}
+
+export const projects: ProjectDetail[] = [
+  {
+    slug: 'ecommerce-headless',
+    title: 'Plataforma E‑commerce Headless',
+    tagline: 'Rendimiento extremo y arquitectura modular para escalar catálogo y conversión.',
+    description:
+      'Implementación headless con enfoque en velocidad percibida, resiliencia y experiencia de checkout optimizada en múltiples dispositivos.',
+    hero: {
+      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1600&q=80',
+      alt: 'Abstract performance dashboard'
+    },
+    roles: ['Arquitectura', 'Frontend', 'Optimización rendimiento'],
+    stack: ['Next.js', 'Edge Functions', 'Stripe', 'GraphQL', 'Tailwind CSS', 'TypeScript'],
+    metrics: [
+      { label: 'LCP', value: '1.9s' },
+      { label: 'CLS', value: '0.02' },
+      { label: 'Conversión', value: '+14%' },
+      { label: 'TTFB', value: '~70ms' }
+    ],
+    sections: [
+      {
+        id: 'overview',
+        heading: 'Overview',
+        content:
+          'Arquitectura headless desacoplada: front Next.js con renderizado híbrido (SSR + SSG + ISR) y orquestación de datos mediante GraphQL Gateway. Edge caching para rutas de alto tráfico y streaming de HTML para percepción instantánea. Stripe integrado con validaciones server-side y microinteracciones en checkout.'
+      },
+      {
+        id: 'challenges',
+        heading: 'Desafíos',
+        content:
+          'Equilibrar personalización (precios dinámicos, inventario en vivo) con estabilidad de caché. Reducir bloqueos de render por librerías de terceros y minimizar JavaScript crítico. Generar prefetch inteligente de rutas según intención de usuario.'
+      },
+      {
+        id: 'solutions',
+        heading: 'Soluciones',
+        content:
+          'Segmentación de bundles con dynamic imports y edge middleware para redirecciones geolocalizadas. Sistema de diseño tokenizado para escalabilidad UI. Observabilidad con métricas Web Vitals enviadas a endpoint propio para análisis continuo.'
+      },
+      {
+        id: 'results',
+        heading: 'Resultados',
+        content:
+          'Mejora sustancial en conversión y tiempos de interacción. Base tecnológica preparada para nuevos canales (mobile app / marketplaces) manteniendo núcleo de negocio desacoplado.'
+      }
+    ],
+    gallery: [
+      {
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Code editor'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Modern dashboard'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Design system components'
+      }
+    ]
+  }
+]
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((p) => p.slug === slug)
+}
