@@ -1,23 +1,9 @@
-'use client'
-import { useState, useTransition } from 'react'
+"use client"
+import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useFormStatus } from 'react-dom'
+import { useFormStatus, useFormState } from 'react-dom'
 import { CheckCircle2, Send, Loader2, Mail, Phone, Shield, Building2 } from 'lucide-react'
-
-async function sendMessage(formData: FormData) {
-  'use server'
-  // Basic server-side validation (placeholder)
-  const name = (formData.get('name') || '').toString().trim()
-  const email = (formData.get('email') || '').toString().trim()
-  const message = (formData.get('message') || '').toString().trim()
-  if (!name || !email || !message) {
-    return { ok: false, error: 'Campos obligatorios faltantes.' }
-  }
-  // TODO: Integrate email provider / queue / db persistence.
-  console.log('CONTACT_MESSAGE', { name, email, message })
-  await new Promise((r) => setTimeout(r, 600))
-  return { ok: true }
-}
+import { sendMessage, type ContactActionState } from './actions'
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -39,9 +25,18 @@ function SubmitButton() {
   )
 }
 
+const initialState: ContactActionState = { ok: undefined, error: null }
+
 export default function ContactoPage() {
-  const [result, setResult] = useState<{ ok: boolean; error?: string } | null>(null)
-  const [isPending, startTransition] = useTransition()
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const [state, formAction] = useFormState(sendMessage, initialState)
+
+  // Reset form on success
+  useEffect(() => {
+    if (state.ok && formRef.current) {
+      formRef.current.reset()
+    }
+  }, [state.ok])
 
   return (
     <div className="min-h-dvh pt-28 pb-32 px-6 mx-auto max-w-7xl">
@@ -68,11 +63,8 @@ export default function ContactoPage() {
           className="lg:col-span-7"
         >
           <form
-            action={async (formData) => {
-              const r = await sendMessage(formData)
-              startTransition(() => setResult(r))
-              if (r.ok) (formData as any) = null
-            }}
+            ref={formRef}
+            action={formAction}
             className="relative overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur-xl p-8 shadow"
           >
             <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_40%_30%,rgba(255,255,255,0.5),transparent_70%)]" />
@@ -142,17 +134,18 @@ export default function ContactoPage() {
             <div className="mt-10 flex items-center gap-6 flex-wrap">
               <SubmitButton />
               <AnimatePresence>
-                {result && (
+                {state.ok !== undefined && (
                   <motion.div
+                    key={state.ok ? 'ok' : 'err'}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     className={`text-sm font-medium flex items-center gap-2 ${
-                      result.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
+                      state.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
                     }`}
                   >
-                    {result.ok ? <CheckCircle2 size={16} /> : null}
-                    {result.ok ? 'Mensaje enviado correctamente.' : result.error}
+                    {state.ok ? <CheckCircle2 size={16} /> : null}
+                    {state.ok ? 'Mensaje enviado correctamente.' : state.error}
                   </motion.div>
                 )}
               </AnimatePresence>
