@@ -51,6 +51,15 @@ export default function ProyectosPage() {
       >
         Una muestra de iniciativas centradas en rendimiento, escalabilidad y experiencia de usuario.
       </motion.p>
+      {/* Back to home link */}
+      <div className="mt-6">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:underline"
+        >
+          ← Volver al inicio
+        </Link>
+      </div>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {projects.map((p, idx) => (
           <motion.article
