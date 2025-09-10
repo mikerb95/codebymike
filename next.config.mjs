@@ -1,11 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    optimizePackageImports: [
-      'framer-motion',
-      'lucide-react'
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'raw.githubusercontent.com' },
+      { protocol: 'https', hostname: 'assets.vercel.com' },
+      { protocol: 'https', hostname: 'tailwindcss.com' },
+      { protocol: 'https', hostname: 'www.typescriptlang.org' },
+      { protocol: 'https', hostname: 'nodejs.org' },
+      { protocol: 'https', hostname: 'azure.microsoft.com' },
+      { protocol: 'https', hostname: 'www.netlify.com' },
+      { protocol: 'https', hostname: 'static-00.iconduck.com' }
     ]
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react']
   }
 };
 
