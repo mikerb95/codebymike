@@ -171,10 +171,10 @@ export default function ContactoPage() {
             </h2>
             <ul className="space-y-4 text-sm text-slate-600 dark:text-slate-300">
               <li className="flex gap-3 items-start">
-                <Mail size={16} className="mt-0.5 text-brand-600" /> contacto@tudominio.com
+                <Mail size={16} className="mt-0.5 text-brand-600" /> mdrb95@gmail.com
               </li>
               <li className="flex gap-3 items-start">
-                <Phone size={16} className="mt-0.5 text-brand-600" /> +57 000 000 0000
+                <Phone size={16} className="mt-0.5 text-brand-600" /> +57 310 464 1228
               </li>
               <li className="flex gap-3 items-start">
                 <Shield size={16} className="mt-0.5 text-brand-600" /> Datos tratados solo para responder tu
@@ -184,9 +184,6 @@ export default function ContactoPage() {
                 <Building2 size={16} className="mt-0.5 text-brand-600" /> Trabajo remoto / híbrido internacional.
               </li>
             </ul>
-          </div>
-          <div className="rounded-2xl border border-dashed border-slate-300/70 dark:border-slate-700/70 p-6 text-xs text-slate-500 dark:text-slate-400">
-            Próximamente: métricas de respuesta, integración CRM y seguimiento de estado.
           </div>
         </motion.aside>
       </div>

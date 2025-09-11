@@ -5,13 +5,8 @@ import { ArrowLeft, Compass } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <main className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-32 text-center">
-      {/* Background decorative */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-32 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
-        <div className="absolute -bottom-40 -right-32 h-[28rem] w-[28rem] rounded-full bg-sky-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)]" />
-      </div>
+    <main className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-32 text-center bg-gradient-to-br from-white via-slate-50 to-white dark:from-[#0b0f14] dark:via-[#0e1319] dark:to-[#0b0f14]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_45%,rgba(0,0,0,0.04),transparent_70%)] dark:bg-[radial-gradient(circle_at_40%_45%,rgba(255,255,255,0.05),transparent_70%)]" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -55,8 +50,7 @@ export default function NotFound() {
         </div>
       </motion.div>
 
-      {/* Subtle animated gradient bars */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-48 w-[140%] -translate-x-1/2 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12),transparent)] dark:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),transparent)]" />
+  {/* Single subtle overlay retained; removed extra bars */}
     </main>
   )
 }
