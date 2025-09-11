@@ -6,6 +6,7 @@ import MobileMenu from './MobileMenu'
 import { motion } from 'framer-motion'
 import { useState, useCallback } from 'react'
 import MegaMenu from './MegaMenu'
+import ProjectsMenu from './ProjectsMenu'
 
 const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
@@ -17,8 +18,11 @@ const NAV_ITEMS = [
 export default function Header() {
   const active = useActiveSection({ ids: NAV_ITEMS.map((i) => i.id!) })
   const [megaOpen, setMegaOpen] = useState(false)
+  const [projectsOpen, setProjectsOpen] = useState(false)
   const toggleMega = useCallback(() => setMegaOpen((o) => !o), [])
   const closeMega = useCallback(() => setMegaOpen(false), [])
+  const toggleProjects = useCallback(() => setProjectsOpen(o => !o), [])
+  const closeProjects = useCallback(() => setProjectsOpen(false), [])
   return (
     <motion.header
       initial={false}
@@ -46,20 +50,22 @@ export default function Header() {
           {NAV_ITEMS.map((item) => {
             const isActive = active === item.id || (item.id === 'top' && active === '')
             const isServicios = item.label === 'Servicios'
+            const isProyectos = item.label === 'Proyectos'
             return (
               <a
                 key={item.href}
                 href={item.href}
-                onMouseEnter={isServicios ? () => setMegaOpen(true) : undefined}
-                onFocus={isServicios ? () => setMegaOpen(true) : undefined}
+                onMouseEnter={isServicios ? () => { setMegaOpen(true); closeProjects() } : isProyectos ? () => { setProjectsOpen(true); closeMega() } : undefined}
+                onFocus={isServicios ? () => { setMegaOpen(true); closeProjects() } : isProyectos ? () => { setProjectsOpen(true); closeMega() } : undefined}
+                onClick={isProyectos ? (e) => { e.preventDefault(); toggleProjects(); } : isServicios ? (e) => { e.preventDefault(); toggleMega(); } : undefined}
                 className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
-                  isActive || (isServicios && megaOpen)
+                  isActive || (isServicios && megaOpen) || (isProyectos && projectsOpen)
                     ? 'text-brand-600 dark:text-brand-400'
                     : 'text-slate-600 dark:text-slate-300'
                 }`}
               >
                 {item.label}
-                {(isActive || (isServicios && megaOpen)) && (
+                {(isActive || (isServicios && megaOpen) || (isProyectos && projectsOpen)) && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute left-2 right-2 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-brand-400 to-brand-600"
@@ -79,11 +85,12 @@ export default function Header() {
           </a>
         </nav>
         {/* Mega menu container overlay area */}
-        <div
-          onMouseLeave={closeMega}
-          className="absolute left-0 right-0 top-full"
-        >
+        <div className="absolute left-0 right-0 top-full" onMouseLeave={() => { closeMega(); closeProjects() }}>
           <MegaMenu open={megaOpen} onClose={closeMega} />
+        </div>
+        {/* Projects dropdown */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-full" onMouseLeave={closeProjects}>
+          <ProjectsMenu open={projectsOpen} onClose={closeProjects} githubUrl="https://github.com/mikerb95" />
         </div>
         <div className="flex md:hidden items-center gap-2">
           <ThemeToggle />
