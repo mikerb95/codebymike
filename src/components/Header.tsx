@@ -10,7 +10,7 @@ import MegaMenu from './MegaMenu'
 
 const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
-  { label: 'Servicios', href: '#servicios', id: 'servicios' },
+  { label: 'Servicios', href: '/servicios', id: 'servicios' },
   { label: 'Proyectos', href: '/proyectos', id: 'proyectos' },
   { label: 'Contacto', href: '#contacto', id: 'contacto' }
 ]
@@ -47,41 +47,21 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-1 text-sm relative h-full">
           {NAV_ITEMS.map((item) => {
             const isActive = active === item.id || (item.id === 'top' && active === '')
-            if (item.label === 'Servicios') {
-              return (
-                <button
-                  key="mega-servicios"
-                  onClick={toggleMega}
-                  onMouseEnter={() => setMegaOpen(true)}
-                  aria-haspopup="true"
-                  aria-expanded={megaOpen}
-                  className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
-                    megaOpen || isActive
-                      ? 'text-brand-600 dark:text-brand-400'
-                      : 'text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  {item.label}
-                  {(megaOpen || isActive) && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute left-2 right-2 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-brand-400 to-brand-600"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </button>
-              )
-            }
+            const isServicios = item.label === 'Servicios'
             return (
               <a
                 key={item.href}
                 href={item.href}
+                onMouseEnter={isServicios ? () => setMegaOpen(true) : undefined}
+                onFocus={isServicios ? () => setMegaOpen(true) : undefined}
                 className={`relative rounded-md px-3 py-2 font-medium transition-colors hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
-                  isActive ? 'text-brand-600 dark:text-brand-400' : 'text-slate-600 dark:text-slate-300'
+                  isActive || (isServicios && megaOpen)
+                    ? 'text-brand-600 dark:text-brand-400'
+                    : 'text-slate-600 dark:text-slate-300'
                 }`}
               >
                 {item.label}
-                {isActive && (
+                {(isActive || (isServicios && megaOpen)) && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute left-2 right-2 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-brand-400 to-brand-600"

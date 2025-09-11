@@ -10,7 +10,14 @@ export default function HomePage() {
       <Header />
       <main className="flex-1">
         <section className="relative overflow-hidden">
-          <div className="mx-auto max-w-6xl px-6 pt-24 pb-16">
+          <div className="absolute inset-0 -z-10">
+            <div
+              className="absolute inset-0 bg-[url('/src/images/bg.webp')] bg-cover bg-center opacity-40 dark:opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white dark:from-[#0b0f14] dark:via-[#0b0f14]/80 dark:to-[#0b0f14]" />
+            <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.6),transparent_60%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.12),transparent_60%)]" />
+          </div>
+          <div className="mx-auto max-w-6xl px-6 pt-24 pb-16 relative">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

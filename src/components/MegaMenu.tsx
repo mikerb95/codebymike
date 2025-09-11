@@ -47,24 +47,43 @@ export default function MegaMenu({ open, onClose }: Props) {
                   {cat.title}
                 </h4>
                 <ul className="space-y-2">
-                  {cat.items.map((it) => (
-                    <li key={it.label}>
-                      <a
-                        href={it.href || '#'}
-                        className="group block rounded-md px-2 py-1.5 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
-                      >
-                        <p className="text-sm font-medium leading-none mb-1 text-slate-700 dark:text-slate-200 group-hover:text-brand-600">
-                          {it.label}
-                        </p>
-                        <p className="text-[11px] leading-tight text-slate-500 dark:text-slate-400">
-                          {it.description}
-                        </p>
-                      </a>
-                    </li>
-                  ))}
+                  {cat.items.map((it) => {
+                    const slug = cat.title
+                      .toLowerCase()
+                      .normalize('NFD')
+                      .replace(/[^a-z0-9\s-]/g, '')
+                      .trim()
+                      .replace(/\s+/g, '-')
+                      .replace(/-+/g, '-')
+                    const href = `/servicios#${slug}`
+                    return (
+                      <li key={it.label}>
+                        <a
+                          href={href}
+                          className="group block rounded-md px-2 py-1.5 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
+                        >
+                          <p className="text-sm font-medium leading-none mb-1 text-slate-700 dark:text-slate-200 group-hover:text-brand-600">
+                            {it.label}
+                          </p>
+                          <p className="text-[11px] leading-tight text-slate-500 dark:text-slate-400">
+                            {it.description}
+                          </p>
+                        </a>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             ))}
+          <div className="md:col-span-3 lg:col-span-4 xl:col-span-6 -mt-2 pt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex justify-end">
+            <a
+              href="/servicios"
+              className="text-xs font-medium text-brand-600 hover:underline"
+              onClick={onClose}
+            >
+              Ver todos los servicios →
+            </a>
+          </div>
           </div>
         </motion.div>
       )}
