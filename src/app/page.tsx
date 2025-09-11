@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, Moon, Sun } from 'lucide-react'
+import bg from '@/images/bg.webp'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -12,10 +13,11 @@ export default function HomePage() {
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <div
-              className="absolute inset-0 bg-[url('/src/images/bg.webp')] bg-cover bg-center opacity-40 dark:opacity-30"
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${bg.src})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white dark:from-[#0b0f14] dark:via-[#0b0f14]/80 dark:to-[#0b0f14]" />
-            <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.6),transparent_60%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.12),transparent_60%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-[#0b0f14]/95 dark:via-[#0b0f14]/85 dark:to-[#0b0f14]" />
+            <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.55),transparent_65%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.10),transparent_65%)]" />
           </div>
           <div className="mx-auto max-w-6xl px-6 pt-24 pb-16 relative">
             <motion.h1
