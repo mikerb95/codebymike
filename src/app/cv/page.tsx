@@ -3,13 +3,18 @@ import { useState, useEffect } from 'react'
 import { Download, Linkedin, Github, Mail, MessageCircle } from 'lucide-react'
 
 const PDF_PATH = '/docs/cv.pdf' // Replace with actual uploaded PDF name
+const RUT_PATH = '/docs/RUT_MR.pdf' // Second document to display in the second viewer
 
 export default function CVPage() {
   const [pdfAvailable, setPdfAvailable] = useState(false)
+  const [rutAvailable, setRutAvailable] = useState(false)
   useEffect(() => {
     fetch(PDF_PATH, { method: 'HEAD' })
       .then((res) => setPdfAvailable(res.ok))
       .catch(() => setPdfAvailable(false))
+    fetch(RUT_PATH, { method: 'HEAD' })
+      .then((res) => setRutAvailable(res.ok))
+      .catch(() => setRutAvailable(false))
   }, [])
 
   return (
@@ -21,23 +26,39 @@ export default function CVPage() {
         </p>
       </header>
       <div className="grid gap-10 lg:grid-cols-12">
-        {/* Viewer */}
+        {/* Viewer (two documents) */}
         <div className="lg:col-span-8">
-          <div
-            className="relative rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur shadow-sm overflow-hidden h-[calc(100vh-260px)] min-h-[70vh]"
-          >
-            {pdfAvailable ? (
-              <iframe
-                title="CV PDF"
-                src={`${PDF_PATH}#toolbar=0&navpanes=0&scrollbar=1&zoom=page-fit`}
-                className="absolute inset-0 w-full h-full" 
-                loading="lazy"
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center p-10 text-center text-sm text-slate-500 dark:text-slate-400">
-                Sube tu archivo PDF a <code className="font-mono">public/docs/cv.pdf</code> para mostrarlo aquí.
-              </div>
-            )}
+          <div className="grid gap-4 lg:grid-cols-2">
+            <div className="relative rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur shadow-sm overflow-hidden h-[calc(100vh-320px)] min-h-[50vh]">
+              <div className="p-3 border-b border-slate-100 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-200">CV PDF</div>
+              {pdfAvailable ? (
+                <iframe
+                  title="CV PDF"
+                  src={`${PDF_PATH}#toolbar=0&navpanes=0&scrollbar=1&zoom=page-fit`}
+                  className="absolute inset-0 w-full h-full"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm text-slate-500 dark:text-slate-400">
+                  Sube tu archivo PDF a <code className="font-mono">public/docs/cv.pdf</code> para mostrarlo aquí.
+                </div>
+              )}
+            </div>
+            <div className="relative rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur shadow-sm overflow-hidden h-[calc(100vh-320px)] min-h-[50vh]">
+              <div className="p-3 border-b border-slate-100 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-200">RUT_MR</div>
+              {rutAvailable ? (
+                <iframe
+                  title="RUT MR"
+                  src={`${RUT_PATH}#toolbar=0&navpanes=0&scrollbar=1&zoom=page-fit`}
+                  className="absolute inset-0 w-full h-full"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm text-slate-500 dark:text-slate-400">
+                  Sube tu archivo PDF a <code className="font-mono">public/docs/RUT_MR.pdf</code> para mostrarlo aquí.
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {/* Sidebar actions */}
@@ -55,6 +76,16 @@ export default function CVPage() {
                 >
                   <Download size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
                   Descargar PDF
+                </a>
+              </li>
+              <li>
+                <a
+                  href={RUT_PATH}
+                  download
+                  className="group flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
+                >
+                  <Download size={16} className="text-brand-600 group-hover:scale-110 transition-transform" />
+                  Descargar RUT_MR
                 </a>
               </li>
               <li>
