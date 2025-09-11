@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Inicio', href: '#top', id: 'top' },
   { label: 'Servicios', href: '/servicios', id: 'servicios' },
   { label: 'Proyectos', href: '/proyectos', id: 'proyectos' },
-  { label: 'Contacto', href: '#contacto', id: 'contacto' }
+  { label: 'Contacto', href: '/contacto', id: 'contacto' }
 ]
 
 export default function Header() {
@@ -72,10 +72,10 @@ export default function Header() {
           <div className="h-6 w-px mx-2 bg-slate-300/60 dark:bg-slate-700/60" />
           <ThemeToggle />
           <a
-            href="#contacto"
+            href="/contacto"
             className="ml-2 inline-flex items-center gap-2 rounded-md bg-gradient-to-br from-brand-500 to-brand-600 text-white px-4 py-2 font-medium hover:from-brand-600 hover:to-brand-700 text-xs tracking-wide shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           >
-            HABLEMOS
+            Contactame
           </a>
         </nav>
         {/* Mega menu container overlay area */}

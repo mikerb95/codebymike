@@ -13,7 +13,7 @@ export default function HomePage() {
   <section className="relative overflow-hidden min-h-[100dvh] flex items-center">
           <div className="absolute inset-0 -z-10">
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-20"
+              className="absolute inset-0 bg-cover bg-center opacity-60 dark:opacity-50"
               style={{ backgroundImage: `url(${bg.src})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-[#0b0f14]/95 dark:via-[#0b0f14]/85 dark:to-[#0b0f14]" />
@@ -43,10 +43,10 @@ export default function HomePage() {
               className="mt-8 flex items-center gap-3"
             >
               <a
-                href="#contacto"
+                href="/contacto"
                 className="inline-flex items-center gap-2 rounded-md bg-brand-600 text-white px-5 py-3 text-sm font-medium hover:bg-brand-700 transition-colors"
               >
-                Hablemos <ArrowRight size={18} />
+                Contactame <ArrowRight size={18} />
               </a>
               <a
                 href="#servicios"

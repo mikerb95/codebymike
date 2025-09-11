@@ -96,7 +96,7 @@ export default function CVPage() {
             </ul>
           </div>
           <div className="rounded-xl border border-dashed border-slate-300/70 dark:border-slate-700/70 p-5 text-xs text-slate-500 dark:text-slate-400">
-            Personaliza enlaces y correos en <code className="font-mono">src/app/cv/page.tsx</code>.
+            Atenderé tus mensajes lo más pronto posible, entre las 08:00 y las 18:00 COT.
           </div>
         </aside>
       </div>
