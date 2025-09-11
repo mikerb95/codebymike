@@ -13,11 +13,11 @@ export default function HomePage() {
   <section className="relative overflow-hidden min-h-[100dvh] flex items-center">
           <div className="absolute inset-0 -z-10">
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-60 dark:opacity-50"
+              className="absolute inset-0 bg-cover bg-center opacity-80 dark:opacity-70 transition-opacity"
               style={{ backgroundImage: `url(${bg.src})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-[#0b0f14]/95 dark:via-[#0b0f14]/85 dark:to-[#0b0f14]" />
-            <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.55),transparent_65%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.10),transparent_65%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/65 dark:from-[#0b0f14]/85 dark:via-[#0b0f14]/70 dark:to-[#0b0f14]/90" />
+            <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_35%_40%,rgba(255,255,255,0.45),transparent_65%)] dark:bg-[radial-gradient(circle_at_35%_40%,rgba(255,255,255,0.08),transparent_65%)]" />
           </div>
           <div className="mx-auto max-w-6xl px-6 py-32 md:py-48 relative">
             <motion.h1
@@ -46,7 +46,7 @@ export default function HomePage() {
                 href="/contacto"
                 className="inline-flex items-center gap-2 rounded-md bg-brand-600 text-white px-5 py-3 text-sm font-medium hover:bg-brand-700 transition-colors"
               >
-                Contactame <ArrowRight size={18} />
+                Contáctame <ArrowRight size={18} />
               </a>
               <a
                 href="#servicios"
