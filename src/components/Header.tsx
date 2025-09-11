@@ -4,7 +4,6 @@ import ThemeToggle from './ThemeToggle'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import MobileMenu from './MobileMenu'
 import { motion } from 'framer-motion'
-import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { useState, useCallback } from 'react'
 import MegaMenu from './MegaMenu'
 
@@ -17,14 +16,13 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const active = useActiveSection({ ids: NAV_ITEMS.map((i) => i.id!) })
-  const { hidden } = useScrollDirection(6)
   const [megaOpen, setMegaOpen] = useState(false)
   const toggleMega = useCallback(() => setMegaOpen((o) => !o), [])
   const closeMega = useCallback(() => setMegaOpen(false), [])
   return (
     <motion.header
       initial={false}
-      animate={{ y: hidden ? -96 : 0, opacity: hidden ? 0.4 : 1 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
       className="pointer-events-none fixed top-3 left-0 right-0 z-50 px-4 md:px-6"
       aria-label="Barra de navegación"
