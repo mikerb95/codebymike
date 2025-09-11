@@ -6,7 +6,7 @@ const GITHUB_PROFILE = 'https://github.com/mikerb95' // Asumido a partir del own
 export default function Footer() {
   return (
     <footer className="mt-32 border-t border-slate-200/60 dark:border-slate-800/60 bg-white/40 dark:bg-[#0f1419]/40 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-3 lg:grid-cols-5 text-sm">
+      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-3 text-sm">
         {/* Brand */}
         <div className="md:col-span-2 space-y-4">
           <div>
@@ -30,8 +30,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Navegación */}
-        <div className="space-y-4">
+  {/* Navegación */}
+  <div className="space-y-4">
           <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Sitio</h3>
           <ul className="space-y-2 text-slate-600 dark:text-slate-400">
             <li><Link className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors" href="/">Inicio</Link></li>
@@ -39,28 +39,6 @@ export default function Footer() {
             <li><Link className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors" href="/contacto">Contacto</Link></li>
             <li><Link className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors" href="/mision">Misión</Link></li>
             <li><Link className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors" href="/vision">Visión</Link></li>
-          </ul>
-        </div>
-
-        {/* Enfoque */}
-        <div className="space-y-4">
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Enfoque</h3>
-          <ul className="space-y-2 text-slate-600 dark:text-slate-400 text-[13px] leading-relaxed">
-            <li>Arquitectura escalable</li>
-            <li>Rendimiento percibido</li>
-            <li>Accesibilidad pragmática</li>
-            <li>DX & automatización</li>
-            <li>UI animada & micro UX</li>
-          </ul>
-        </div>
-
-        {/* Estado / Meta */}
-        <div className="space-y-4">
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Meta</h3>
-          <ul className="space-y-2 text-slate-600 dark:text-slate-400 text-[13px] leading-relaxed">
-            <li>Iterando continuamente</li>
-            <li>Más estudios de caso pronto</li>
-            <li>Abierto a colaboración</li>
           </ul>
         </div>
       </div>

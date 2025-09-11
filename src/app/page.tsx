@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className="min-h-dvh flex flex-col">
       <Header />
       <main className="flex-1">
-        <section className="relative overflow-hidden">
+  <section className="relative overflow-hidden min-h-[100dvh] flex items-center">
           <div className="absolute inset-0 -z-10">
             <div
               className="absolute inset-0 bg-cover bg-center"
@@ -19,14 +19,14 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-[#0b0f14]/95 dark:via-[#0b0f14]/85 dark:to-[#0b0f14]" />
             <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.55),transparent_65%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.10),transparent_65%)]" />
           </div>
-          <div className="mx-auto max-w-6xl px-6 pt-24 pb-16 relative">
+          <div className="mx-auto max-w-6xl px-6 py-32 md:py-48 relative">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold tracking-tight"
             >
-              CodeByMike
+              Modern web Desing
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
