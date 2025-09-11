@@ -87,9 +87,6 @@ export default function Header() {
         {/* Mega menu container overlay area */}
         <div className="absolute left-0 right-0 top-full" onMouseLeave={() => { closeMega(); closeProjects() }}>
           <MegaMenu open={megaOpen} onClose={closeMega} />
-        </div>
-        {/* Projects dropdown */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-full" onMouseLeave={closeProjects}>
           <ProjectsMenu open={projectsOpen} onClose={closeProjects} githubUrl="https://github.com/mikerb95" />
         </div>
         <div className="flex md:hidden items-center gap-2">
