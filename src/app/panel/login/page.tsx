@@ -2,6 +2,12 @@ import { redirect } from 'next/navigation'
 import { login, isAuthenticated, type AuthState } from './actions'
 import { useFormState, useFormStatus } from 'react-dom'
 
+async function checkAuthAndRedirect() {
+  if (await isAuthenticated()) redirect('/panel/proyectos')
+}
+
+checkAuthAndRedirect()
+
 function SubmitBtn() {
   const { pending } = useFormStatus()
   return (
@@ -16,7 +22,6 @@ function SubmitBtn() {
 }
 
 export default function AdminLoginPage() {
-  if (isAuthenticated()) redirect('/panel/proyectos')
   const initialState: AuthState = { ok: undefined, error: null }
   const [state, formAction] = useFormState(login, initialState)
   return (

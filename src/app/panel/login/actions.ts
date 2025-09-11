@@ -23,6 +23,6 @@ export async function logout(): Promise<void> {
   redirect('/panel/login')
 }
 
-export function isAuthenticated(): boolean {
+export async function isAuthenticated(): Promise<boolean> {
   return cookies().get(COOKIE_NAME)?.value === '1'
 }
