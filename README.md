@@ -15,3 +15,6 @@ My Dev portfolio/services site, optimized for Vercel deployments.
 - build: production build
 - start: start production server
 - lint/format: code quality
+
+
+Test ON Ubuntu With GPG & SSH keys for verify, send & receive commits. 28-12-25
