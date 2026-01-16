@@ -24,8 +24,6 @@ export async function addProject(_prev: AddProjectState, formData: FormData): Pr
 
   const roles = rolesRaw.split(',').map((r) => r.trim()).filter(Boolean)
   const stack = stackRaw.split(',').map((r) => r.trim()).filter(Boolean)
-  const technologies = technologiesRaw.split(',').map((r) => r.trim()).filter(Boolean)
-  const frameworks = frameworksRaw.split(',').map((r) => r.trim()).filter(Boolean)
 
   const slugBase = slugify(title)
   const all = await readProjects()
@@ -41,16 +39,17 @@ export async function addProject(_prev: AddProjectState, formData: FormData): Pr
     tagline,
     description,
     hero: { image: heroImage, alt: heroAlt },
-    roles: roles.length ? roles : ['Desarrollo'],
-    stack: stack.length ? stack : technologies,
+    roles: roles.length ? roles : ['Engineering'],
+    stack: stack.length ? stack : ['Next.js', 'Typescript'],
     metrics: [],
+    challenge: 'Descripción del desafío técnico pendiente de completar.',
+    architecture: 'Descripción de la arquitectura pendiente de completar.',
+    impact: 'Métricas de impacto pendiente de completar.',
+    techDecisions: [],
     sections: [
       { id: 'overview', heading: 'Overview', content: description }
     ],
     gallery: [],
-    design: designNotes ? { notes: designNotes } : undefined,
-    technologies: technologies.length ? technologies : undefined,
-    frameworks: frameworks.length ? frameworks : undefined,
     repo: repoOwner && repoName ? { owner: repoOwner, name: repoName, url: `https://github.com/${repoOwner}/${repoName}` } : undefined
   }
 
