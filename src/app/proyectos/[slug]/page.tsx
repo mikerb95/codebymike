@@ -1,162 +1,150 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import { getProjectBySlug, projects } from '@/data/projects'
-import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ArrowLeft, Github, Globe, Layers, Zap, CheckCircle2 } from 'lucide-react'
+import { getProjectBySlug } from '@/data/projects'
+import Footer from '@/components/Footer'
 
-interface Props { params: { slug: string } }
-
-export const dynamic = 'force-dynamic'
-
-export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }))
-}
-
-export function generateMetadata({ params }: Props): Metadata {
-  const p = getProjectBySlug(params.slug)
-  if (!p) return { title: 'Proyecto' }
-  return { title: `${p.title} | CodeByMike`, description: p.tagline }
-}
-
-export default function ProjectDetailPage({ params }: Props) {
+export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = getProjectBySlug(params.slug)
-  if (!project) return notFound()
+
+  if (!project) {
+    notFound()
+  }
 
   return (
-    <div className="min-h-dvh pt-24 pb-32">
-      {/* Hero */}
-      <section className="px-6">
+    <div className="min-h-dvh flex flex-col font-sans bg-white dark:bg-[#0b0f14]">
+      {/* Navigation */}
+      <nav className="absolute top-0 w-full z-50 p-6">
         <div className="mx-auto max-w-7xl">
-          <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-800/60 bg-slate-100 dark:bg-slate-900">
-            <Image
-              src={project.hero.image}
-              alt={project.hero.alt}
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-              <div>
-                <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white drop-shadow-md">
-                  {project.title}
-                </h1>
-                <p className="mt-3 max-w-2xl text-sm md:text-base text-slate-200 leading-relaxed">
-                  {project.tagline}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 text-[11px] font-medium text-white/90">
-                {project.roles.map((r) => (
-                  <span
-                    key={r}
-                    className="rounded-full bg-white/15 backdrop-blur px-3 py-1 border border-white/20"
-                  >
-                    {r}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+          <Link
+            href="/proyectos"
+            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-slate-800 dark:text-white backdrop-blur-md transition hover:bg-white/20"
+          >
+            <ArrowLeft size={16} /> Volver a Proyectos
+          </Link>
         </div>
-      </section>
+      </nav>
 
-      {/* Content layout */}
-      <section className="mt-16 px-6">
-        <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12">
-          {/* Sticky sidebar */}
-            <aside className="lg:col-span-4 space-y-10 order-2 lg:order-1">
-              <div className="rounded-xl border border-slate-200/70 dark:border-slate-800/60 bg-white/70 dark:bg-[#12161d]/70 backdrop-blur p-6 shadow-sm sticky top-28">
-                <h2 className="font-semibold text-sm tracking-wide text-slate-500 dark:text-slate-400 mb-4">
-                  Stack Principal
-                </h2>
-                <ul className="flex flex-wrap gap-2">
-                  {project.stack.map((s) => (
-                    <li key={s}>
-                      <span className="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-[11px] font-medium text-slate-700 dark:text-slate-200">
-                        {s}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 border-t border-slate-200 dark:border-slate-800 pt-6">
-                  <h3 className="font-semibold text-sm tracking-wide text-slate-500 dark:text-slate-400 mb-4">
-                    Métricas Clave
-                  </h3>
-                  <dl className="grid grid-cols-2 gap-4">
-                    {project.metrics.map((m) => (
-                      <div key={m.label} className="flex flex-col">
-                        <dt className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                          {m.label}
-                        </dt>
-                        <dd className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                          {m.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
+      {/* Hero Header */}
+      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900 border-b border-slate-800">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f14] to-transparent"></div>
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="max-w-4xl">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.roles.map(role => (
+                <span key={role} className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-400">
+                  {role}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-4xl lg:text-7xl font-bold text-white tracking-tight font-serif mb-6">
+              {project.title}
+            </h1>
+            <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-2xl">
+              {project.tagline}
+            </p>
+          </div>
+
+          {/* Key Metrics Grid */}
+          <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-slate-800 pt-8">
+            {project.metrics.map((metric, i) => (
+              <div key={i}>
+                <p className="text-3xl lg:text-4xl font-bold text-white mb-1">{metric.value}</p>
+                <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">{metric.label}</p>
               </div>
-              <div className="rounded-xl border border-dashed border-slate-300/70 dark:border-slate-700/70 p-6 text-xs text-slate-500 dark:text-slate-400">
-                Próximamente: enlaces a repositorio, caso de estudio detallado y demo interactiva.
-              </div>
-            </aside>
-          {/* Main sections */}
-          <div className="lg:col-span-8 space-y-24 order-1 lg:order-2">
-            {project.sections.map((sec) => (
-              <article key={sec.id} id={sec.id} className="scroll-mt-28">
-                <header className="mb-6">
-                  <h2 className="text-2xl font-semibold tracking-tight">
-                    {sec.heading}
-                  </h2>
-                </header>
-                <p className="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                  {sec.content}
-                </p>
-              </article>
             ))}
+          </div>
+        </div>
+      </header>
 
-            {/* Gallery */}
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight mb-6">Galería</h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                {project.gallery.map((g) => (
-                  <figure
-                    key={g.image}
-                    className="relative overflow-hidden rounded-xl border border-slate-200/70 dark:border-slate-800/60 bg-slate-100 dark:bg-slate-900 group"
-                  >
-                    <Image
-                      src={g.image}
-                      alt={g.alt}
-                      width={800}
-                      height={600}
-                      className="object-cover h-full w-full transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
-                    {g.caption && (
-                      <figcaption className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur px-4 py-2 text-[11px] text-white">
-                        {g.caption}
-                      </figcaption>
-                    )}
-                  </figure>
-                ))}
-              </div>
+      <main className="flex-1 mx-auto max-w-7xl px-6 py-20">
+        <div className="grid lg:grid-cols-12 gap-16">
+          {/* Main Content (Left) */}
+          <div className="lg:col-span-8 space-y-16">
+            <section>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                <Zap className="text-brand-600" /> El Desafío
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                {project.challenge || project.description}
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                <Layers className="text-brand-600" /> Arquitectura & Solución
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                {project.architecture}
+              </p>
+
+              {/* Tech Decisions Cards */}
+              {project.techDecisions && project.techDecisions.length > 0 && (
+                <div className="grid gap-6 md:grid-cols-2">
+                  {project.techDecisions.map((decision, i) => (
+                    <div key={i} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-6">
+                      <h4 className="font-bold text-slate-900 dark:text-white mb-2">{decision.title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {decision.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                <CheckCircle2 className="text-brand-600" /> Impacto
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                {project.impact}
+              </p>
+            </section>
+          </div>
+
+          {/* Sidebar (Right) */}
+          <div className="lg:col-span-4 space-y-12 h-fit lg:sticky lg:top-24">
+            {/* Links */}
+            <div className="flex flex-col gap-4">
+              {project.repo && (
+                <a
+                  href={project.repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+                >
+                  <Github size={18} /> Ver Código Fuente
+                </a>
+              )}
+              <button
+                disabled
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-400 cursor-not-allowed dark:border-slate-800 dark:bg-transparent dark:text-slate-600"
+              >
+                <Globe size={18} /> Demo Live (Privado)
+              </button>
             </div>
 
-            <div className="pt-12 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-6">
-              <a
-                href="/proyectos"
-                className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:underline"
-              >
-                ← Volver a proyectos
-              </a>
-              <a
-                href="/cv"
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-brand-600 hover:underline"
-              >
-                Ver CV
-              </a>
+            {/* Stack List */}
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-800 pb-2">
+                Tech Stack
+              </h3>
+              <ul className="space-y-3">
+                {project.stack.map(tech => (
+                  <li key={tech} className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-500"></span>
+                    {tech}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-      </section>
+      </main>
+      <Footer />
     </div>
   )
 }

@@ -1,24 +1,30 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
+import './globals.css'
+import clsx from 'clsx'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+})
 
 export const metadata: Metadata = {
-  title: 'CodeByMike',
-  description: 'Servicios de desarrollo de software con enfoque en UX, animaciones y rendimiento.'
+  title: 'CodeByMike | Senior Software Engineer',
+  description: 'Portafolio de desarrollo de software enfocado en arquitectura, rendimiento y experiencia de usuario.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Epunda+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
+    <html lang="es" suppressHydrationWarning className={clsx(inter.variable, playfair.variable)}>
+      <body className="bg-white text-slate-900 antialiased dark:bg-[#0b0f14] dark:text-slate-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

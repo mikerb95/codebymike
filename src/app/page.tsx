@@ -1,75 +1,106 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Clock3, Mail, Wrench } from 'lucide-react'
+import { ArrowRight, Terminal, Mail } from 'lucide-react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'En mantenimiento | CodeByMike',
-  description: 'Estamos ajustando los últimos detalles. Volvemos enseguida.'
+  title: 'CodeByMike | Senior Software Engineer',
+  description: 'Ingeniería de software con propósito. Especializado en arquitectura escalable y experiencia de usuario.',
 }
 
 export default function HomePage() {
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className="min-h-dvh flex flex-col font-sans">
       <Header />
-      <main className="relative flex-1 overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white dark:from-[#0b0f14] dark:via-[#0e1319] dark:to-[#0b0f14]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_35%_40%,rgba(15,23,42,0.05),transparent_60%)] dark:bg-[radial-gradient(circle_at_35%_40%,rgba(255,255,255,0.08),transparent_60%)]" />
-        <div className="pointer-events-none absolute inset-0 backdrop-blur-[2px]" />
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-32 pb-24 md:pt-48 md:pb-32">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-100/20 via-white to-white dark:from-brand-900/20 dark:via-[#0b0f14] dark:to-[#0b0f14]" />
 
-        <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 py-24 text-center md:gap-10 md:py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="flex items-center gap-3 rounded-full border border-slate-200/70 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur dark:border-slate-800/70 dark:bg-slate-900/60 dark:text-slate-200"
-          >
-            <Clock3 size={18} className="text-brand-600 dark:text-brand-400" />
-            Estamos afinando los últimos detalles
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: 4 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 14, mass: 0.7, delay: 0.05 }}
-            className="flex h-28 w-28 items-center justify-center rounded-3xl border border-slate-200/70 bg-white/80 shadow-inner backdrop-blur-xl dark:border-slate-800/70 dark:bg-[#141a22]/70"
-          >
-            <Wrench className="h-12 w-12 text-brand-600 dark:text-brand-400" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.6, ease: 'easeOut' }}
-            className="space-y-4"
-          >
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">En mantenimiento</h1>
-            <p className="text-base leading-relaxed text-slate-600 md:text-lg dark:text-slate-300">
-              Estamos mejorando la experiencia y afinando nuevas funcionalidades. En breve volveremos con todo funcionando.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
-            className="flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/"
-              className="group inline-flex items-center gap-2 rounded-lg border border-slate-300/70 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-800 shadow-sm transition hover:border-brand-500/60 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 dark:border-slate-800/70 dark:bg-slate-900/50 dark:text-slate-100"
+          <div className="mx-auto max-w-5xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl"
             >
-              <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" /> Volver al inicio
-            </Link>
-            <Link
-              href="mailto:hola@codebymike.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-medium text-white shadow transition hover:from-brand-600 hover:to-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60"
-            >
-              <Mail size={16} /> Escríbeme
-            </Link>
-          </motion.div>
-        </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-3 py-1 text-sm text-slate-600 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Disponible para nuevos proyectos
+              </div>
+
+              <h1 className="mt-8 text-5xl font-bold tracking-tight text-slate-900 md:text-7xl dark:text-white font-serif">
+                Ingeniería de software con <span className="text-brand-600 dark:text-brand-400">propósito</span>.
+              </h1>
+
+              <p className="mt-6 text-xl leading-relaxed text-slate-600 md:text-2xl dark:text-slate-300 max-w-2xl">
+                Ayudo a empresas a escalar sus productos digitales mediante arquitectura robusta, rendimiento obsesivo y experiencia de usuario de clase mundial.
+              </p>
+
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link
+                  href="/proyectos"
+                  className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-6 py-3 text-base font-medium text-white shadow-lg shadow-slate-900/20 transition hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+                >
+                  Ver Case Studies <ArrowRight size={18} />
+                </Link>
+                <Link
+                  href="/contacto"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 text-base font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-800 dark:bg-transparent dark:text-slate-300 dark:hover:bg-slate-800"
+                >
+                  Hablemos
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Expertise Section */}
+        <section className="py-24 border-t border-slate-100 dark:border-slate-800/50">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Expertise Técnico & Filosofía
+            </h2>
+            <div className="mt-12 grid gap-12 md:grid-cols-3">
+              <div className="space-y-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 dark:bg-brand-900/20 dark:text-brand-400">
+                  <Terminal size={20} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Arquitectura Escalable</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Diseño sistemas distribuidos y modulares pensados para crecer. Monorepos, microservicios (cuando tienen sentido) y patrones de diseño sólidos.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Performance First</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  La velocidad es una feature. Optimizo Core Web Vitals, tiempos de respuesta de API y eficiencia en bases de datos.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Calidad de Código</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Testing riguroso (Unit, E2E), tipado estático estricto y documentación clara. Código mantenible es código rentable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
