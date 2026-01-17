@@ -140,9 +140,8 @@ export default function ContactoPage() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
-                    className={`text-sm font-medium flex items-center gap-2 ${
-                      state.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
-                    }`}
+                    className={`text-sm font-medium flex items-center gap-2 ${state.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
+                      }`}
                   >
                     {state.ok ? <CheckCircle2 size={16} /> : null}
                     {state.ok ? 'Mensaje enviado correctamente.' : state.error}
@@ -171,7 +170,7 @@ export default function ContactoPage() {
             </h2>
             <ul className="space-y-4 text-sm text-slate-600 dark:text-slate-300">
               <li className="flex gap-3 items-start">
-                <Mail size={16} className="mt-0.5 text-brand-600" /> mdrb95@gmail.com
+                <Mail size={16} className="mt-0.5 text-brand-600" /> mike95@duck.com
               </li>
               <li className="flex gap-3 items-start">
                 <Phone size={16} className="mt-0.5 text-brand-600" /> +57 310 464 1228
